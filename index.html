@@ -1,131 +1,186 @@
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #eef2f7;
-    margin: 0;
-    padding: 10px;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="theme-color" content="#4a90e2">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlowTrack - MG Labs</title>
+  <link rel="icon" href="logo.png">
 
-  .container {
-    max-width: 500px;
-    margin: auto;
-    background: #fff;
-    padding: 15px;
-    border-radius: 16px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      margin: 0;
+      padding: 10px;
+    }
 
-  h1 {
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 15px;
-  }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 15px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
 
-  h3 {
-    margin-top: 20px;
-    font-size: 16px;
-  }
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
 
-  /* HEADER (FIXED) */
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-  }
+    h3 {
+      margin-top: 20px;
+      font-size: 16px;
+    }
 
-  .logo {
-    width: 32px;        /* 👈 SMALLER for mobile */
-    height: 32px;
-    object-fit: contain;
-  }
+    /* HEADER */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
 
-  .app-name {
-    margin: 0;
-    font-size: 18px;
-  }
+    .logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
 
-  .company-name {
-    margin: 0;
-    font-size: 12px;
-    color: gray;
-  }
+    .app-name {
+      margin: 0;
+      font-size: 18px;
+    }
 
-  /* MOBILE FIRST STACK */
-  .row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 12px;
-  }
+    .company-name {
+      margin: 0;
+      font-size: 12px;
+      color: gray;
+    }
 
-  input, select {
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  button {
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    font-size: 15px;
-    width: 100%;
-    cursor: pointer;
-  }
-
-  .delete-btn {
-    background: #ff4d4d;
-    color: white;
-  }
-
-  .add-btn {
-    background: #f0f0f0;
-  }
-
-  .add-btn:hover {
-    background: #ddd;
-  }
-
-  .export-btn {
-    background: #28a745;
-    color: white;
-    margin-top: 10px;
-  }
-
-  .results {
-    background: #f8f9fb;
-    padding: 15px;
-    border-radius: 12px;
-    margin-top: 20px;
-  }
-
-  .results p {
-    margin: 6px 0;
-    font-size: 14px;
-  }
-
-  /* DESKTOP IMPROVEMENT */
-  @media (min-width: 600px) {
+    /* MOBILE FIRST */
     .row {
-      flex-direction: row;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
     input, select {
-      flex: 1;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      font-size: 15px;
+      width: 100%;
+      cursor: pointer;
     }
 
     .delete-btn {
-      width: 60px;
+      background: #ff4d4d;
+      color: white;
     }
 
-    /* Slightly bigger logo on desktop */
-    .logo {
-      width: 45px;
-      height: 45px;
+    .add-btn {
+      background: #f0f0f0;
     }
-  }
-</style>
+
+    .add-btn:hover {
+      background: #ddd;
+    }
+
+    .export-btn {
+      background: #28a745;
+      color: white;
+      margin-top: 10px;
+    }
+
+    .results {
+      background: #f8f9fb;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    .results p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    /* DESKTOP */
+    @media (min-width: 600px) {
+      .row {
+        flex-direction: row;
+      }
+
+      input, select {
+        flex: 1;
+      }
+
+      .delete-btn {
+        width: 60px;
+      }
+
+      .logo {
+        width: 45px;
+        height: 45px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="header">
+    <img src="logo.png" alt="MG Labs Logo" class="logo">
+    <div>
+      <h1 class="app-name">FlowTrack</h1>
+      <p class="company-name">by MG Labs</p>
+    </div>
+  </div>
+
+  <!-- Earnings -->
+  <h3>Earnings</h3>
+  <div id="earnings-list"></div>
+  <button class="add-btn" onclick="addEarning()">+ Add Earning</button>
+
+  <!-- Expenses -->
+  <h3>Expenses</h3>
+  <div id="expenses-list"></div>
+  <button class="add-btn" onclick="addExpense()">+ Add Expense</button>
+
+  <!-- Savings -->
+  <h3>Savings</h3>
+  <div id="savings-list"></div>
+  <button class="add-btn" onclick="addSaving()">+ Add Saving</button>
+
+  <!-- Results -->
+  <div class="results">
+    <h3>Results</h3>
+    <p>Total Earnings: <span id="total-earnings">0</span></p>
+    <p>Total Expenses: <span id="total-expenses">0</span></p>
+    <p>Total Savings: <span id="total-savings">0</span></p>
+    <p>Remaining: <span id="remaining">0</span></p>
+
+    <h4>Category Totals</h4>
+    <div id="category-totals"></div>
+  </div>
+
+  <button class="export-btn" onclick="exportCSV()">Export to Excel</button>
+</div>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>
