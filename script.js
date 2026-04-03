@@ -64,7 +64,7 @@ window.addEarning = function () {
 };
 
 window.addExpense = function () {
-  expenses.push({ label: "", amount: 0 });
+  expenses.push({ label: "", category: "Food", amount: 0 });
   saveData();
   render();
 };
@@ -98,6 +98,11 @@ window.updateExpenseLabel = function (index, value) {
 
 window.updateExpenseAmount = function (index, value) {
   expenses[index].amount = parseFloat(value) || 0;
+  saveData();
+};
+
+window.updateExpenseCategory = function (index, value) {
+  expenses[index].category = value;
   saveData();
 };
 
