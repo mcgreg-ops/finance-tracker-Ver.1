@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="theme-color" content="#4a90e2">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlowTrack - MG Labs</title>
   <link rel="icon" href="logo.png">
 
@@ -21,120 +20,41 @@
       background: #fff;
       padding: 15px;
       border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
-    h1 {
-      text-align: center;
-      font-size: 22px;
-      margin-bottom: 15px;
-    }
-
-    h3 {
-      margin-top: 20px;
-      font-size: 16px;
-    }
-
-    /* HEADER */
     .header {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 15px;
     }
 
     .logo {
-      width: 32px;
-      height: 32px;
-      object-fit: contain;
+      width: 30px;
+      height: 30px;
     }
 
-    .app-name {
-      margin: 0;
-      font-size: 18px;
+    h3 {
+      margin-top: 20px;
     }
 
-    .company-name {
-      margin: 0;
-      font-size: 12px;
-      color: gray;
-    }
-
-    /* MOBILE FIRST */
     .row {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     input, select {
-      padding: 12px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      width: 100%;
-      box-sizing: border-box;
+      padding: 10px;
     }
 
     button {
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      font-size: 15px;
-      width: 100%;
-      cursor: pointer;
-    }
-
-    .delete-btn {
-      background: #ff4d4d;
-      color: white;
-    }
-
-    .add-btn {
-      background: #f0f0f0;
-    }
-
-    .add-btn:hover {
-      background: #ddd;
-    }
-
-    .export-btn {
-      background: #28a745;
-      color: white;
-      margin-top: 10px;
+      padding: 10px;
+      margin-top: 5px;
     }
 
     .results {
-      background: #f8f9fb;
-      padding: 15px;
-      border-radius: 12px;
       margin-top: 20px;
-    }
-
-    .results p {
-      margin: 6px 0;
-      font-size: 14px;
-    }
-
-    /* DESKTOP */
-    @media (min-width: 600px) {
-      .row {
-        flex-direction: row;
-      }
-
-      input, select {
-        flex: 1;
-      }
-
-      .delete-btn {
-        width: 60px;
-      }
-
-      .logo {
-        width: 45px;
-        height: 45px;
-      }
     }
   </style>
 </head>
@@ -142,45 +62,40 @@
 <body>
 
 <div class="container">
+
   <div class="header">
-    <img src="logo.png" alt="MG Labs Logo" class="logo">
+    <img src="logo.png" class="logo">
     <div>
-      <h1 class="app-name">FlowTrack</h1>
-      <p class="company-name">by MG Labs</p>
+      <strong>FlowTrack</strong><br>
+      <small>MG Labs</small>
     </div>
   </div>
 
-  <!-- Earnings -->
   <h3>Earnings</h3>
   <div id="earnings-list"></div>
-  <button class="add-btn" onclick="addEarning()">+ Add Earning</button>
+  <button onclick="addEarning()">+ Add Earning</button>
 
-  <!-- Expenses -->
   <h3>Expenses</h3>
   <div id="expenses-list"></div>
-  <button class="add-btn" onclick="addExpense()">+ Add Expense</button>
+  <button onclick="addExpense()">+ Add Expense</button>
 
-  <!-- Savings -->
   <h3>Savings</h3>
   <div id="savings-list"></div>
-  <button class="add-btn" onclick="addSaving()">+ Add Saving</button>
+  <button onclick="addSaving()">+ Add Saving</button>
 
-  <!-- Results -->
   <div class="results">
-    <h3>Results</h3>
     <p>Total Earnings: <span id="total-earnings">0</span></p>
     <p>Total Expenses: <span id="total-expenses">0</span></p>
     <p>Total Savings: <span id="total-savings">0</span></p>
     <p>Remaining: <span id="remaining">0</span></p>
-
-    <h4>Category Totals</h4>
     <div id="category-totals"></div>
   </div>
 
-  <button class="export-btn" onclick="exportCSV()">Export to Excel</button>
+  <button onclick="exportCSV()">Export</button>
+
 </div>
 
-<script src="script.js" defer></script>
+<script src="script.js"></script>
 
 </body>
 </html>
