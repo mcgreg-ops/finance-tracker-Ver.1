@@ -6,85 +6,105 @@
   <title>Finance Tracker</title>
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #eef2f7;
-      padding: 20px;
-    }
+  body {
+    font-family: Arial, sans-serif;
+    background: #eef2f7;
+    margin: 0;
+    padding: 10px;
+  }
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    }
+  .container {
+    max-width: 500px;
+    margin: auto;
+    background: #fff;
+    padding: 15px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+  h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
 
-    h3 {
-      margin-top: 25px;
-    }
+  h3 {
+    margin-top: 20px;
+    font-size: 16px;
+  }
 
+  /* MOBILE FIRST STACK */
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  input, select {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  button {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    font-size: 15px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .delete-btn {
+    background: #ff4d4d;
+    color: white;
+  }
+
+  .add-btn {
+    background: #f0f0f0;
+  }
+
+  .add-btn:hover {
+    background: #ddd;
+  }
+
+  .export-btn {
+    background: #28a745;
+    color: white;
+    margin-top: 10px;
+  }
+
+  .results {
+    background: #f8f9fb;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+  }
+
+  .results p {
+    margin: 6px 0;
+    font-size: 14px;
+  }
+
+  /* DESKTOP IMPROVEMENT */
+  @media (min-width: 600px) {
     .row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 10px;
+      flex-direction: row;
     }
 
     input, select {
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
       flex: 1;
     }
 
-    button {
-      padding: 10px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-    }
-
     .delete-btn {
-      background: #ff4d4d;
-      color: white;
+      width: 60px;
     }
-
-    .add-btn {
-      width: 100%;
-      background: #f0f0f0;
-    }
-
-    .add-btn:hover {
-      background: #ddd;
-    }
-
-    .calculate-btn {
-      margin-top: 10px;
-      background: #4a90e2;
-      color: white;
-      width: 100%;
-    }
-
-    .export-btn {
-      background: #28a745;
-      color: white;
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .results {
-      background: #f8f9fb;
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 20px;
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
