@@ -17,7 +17,9 @@ function render() {
 
   earningsList.innerHTML = "";
   expensesList.innerHTML = "";
+  savingsList.innerHTML = "";
 
+  // Earnings
   earnings.forEach((item, index) => {
     earningsList.innerHTML += `
       <div class="row">
@@ -28,6 +30,7 @@ function render() {
     `;
   });
 
+  // Expenses
   expenses.forEach((item, index) => {
     expensesList.innerHTML += `
       <div class="row">
@@ -46,19 +49,17 @@ function render() {
     `;
   });
 
-  savingsList.innerHTML = "";
+  // Savings
+  savings.forEach((item, index) => {
+    savingsList.innerHTML += `
+      <div class="row">
+        <input type="text" placeholder="Label" value="${item.label}" onchange="updateSavingLabel(${index}, this.value)">
+        <input type="number" placeholder="Amount" value="${item.amount}" onchange="updateSavingAmount(${index}, this.value)">
+        <button class="delete-btn" onclick="deleteSaving(${index})">X</button>
+      </div>
+    `;
+  });
 
-savings.forEach((item, index) => {
-  savingsList.innerHTML += `
-    <div class="row">
-      <input type="text" placeholder="Label" value="${item.label}" onchange="updateSavingLabel(${index}, this.value)">
-      <input type="number" placeholder="Amount" value="${item.amount}" onchange="updateSavingAmount(${index}, this.value)">
-      <button class="delete-btn" onclick="deleteSaving(${index})">X</button>
-    </div>
-  `;
-});
-
-  // ✅ ALWAYS UPDATE TOTALS AFTER RENDER
   calculateAndUpdate();
 }
 
@@ -75,6 +76,12 @@ window.addExpense = function () {
   render();
 };
 
+window.addSaving = function () {
+  savings.push({ label: "", amount: 0 });
+  saveData();
+  render();
+};
+
 window.deleteEarning = function (index) {
   earnings.splice(index, 1);
   saveData();
@@ -83,6 +90,12 @@ window.deleteEarning = function (index) {
 
 window.deleteExpense = function (index) {
   expenses.splice(index, 1);
+  saveData();
+  render();
+};
+
+window.deleteSaving = function (index) {
+  savings.splice(index, 1);
   saveData();
   render();
 };
@@ -117,18 +130,6 @@ window.updateExpenseCategory = function (index, value) {
   calculateAndUpdate();
 };
 
-window.addSaving = function () {
-  savings.push({ label: "", amount: 0 });
-  saveData();
-  render();
-};
-
-window.deleteSaving = function (index) {
-  savings.splice(index, 1);
-  saveData();
-  render();
-};
-
 window.updateSavingLabel = function (index, value) {
   savings[index].label = value;
   saveData();
@@ -141,27 +142,25 @@ window.updateSavingAmount = function (index, value) {
   calculateAndUpdate();
 };
 
-// CALCULATE + CATEGORY TOTALS
+// CALCULATE
 function calculateAndUpdate() {
   const totalEarnings = earnings.reduce((sum, e) => sum + e.amount, 0);
   const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
+  const totalSavings = savings.reduce((sum, s) => sum + s.amount, 0);
   const remaining = totalEarnings - totalExpenses;
-   const totalSavings = savings.reduce((sum, s) => sum + s.amount, 0);
 
   document.getElementById("total-earnings").innerText = totalEarnings;
   document.getElementById("total-expenses").innerText = totalExpenses;
-  document.getElementById("remaining").innerText = remaining;
   document.getElementById("total-savings").innerText = totalSavings;
+  document.getElementById("remaining").innerText = remaining;
 
   const container = document.getElementById("category-totals");
 
-  // 🔥 FIX: show message if empty
   if (expenses.length === 0) {
     container.innerHTML = "<p>No expenses yet</p>";
     return;
   }
 
-  // CATEGORY TOTALS
   const categoryTotals = {};
 
   expenses.forEach(e => {
@@ -175,39 +174,6 @@ function calculateAndUpdate() {
     container.innerHTML += `<p><strong>${category}</strong>: ₱${categoryTotals[category]}</p>`;
   }
 }
-
-// EXPORT
-window.exportCSV = function () {
-  let csv = "Label,Type,Amount\n";
-
-  let totalEarnings = 0;
-  let totalExpenses = 0;
-
-  earnings.forEach(e => {
-    csv += `${e.label},Income,${e.amount}\n`;
-    totalEarnings += e.amount;
-  });
-
-  expenses.forEach(e => {
-    csv += `${e.label},Expense,${e.amount}\n`;
-    totalExpenses += e.amount;
-  });
-
-  const remaining = totalEarnings - totalExpenses;
-
-  csv += "\n";
-  csv += `Total Income,,${totalEarnings}\n`;
-  csv += `Total Expense,,${totalExpenses}\n`;
-  csv += `Remaining,,${remaining}\n`;
-
-  const blob = new Blob([csv], { type: "text/csv" });
-  const url = window.URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "finance-data.csv";
-  a.click();
-};
 
 // INIT
 render();
