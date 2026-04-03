@@ -42,6 +42,9 @@ function render() {
       </div>
     `;
   });
+
+  // ✅ ALWAYS UPDATE TOTALS AFTER RENDER
+  calculateAndUpdate();
 }
 
 // GLOBAL FUNCTIONS
@@ -49,28 +52,24 @@ window.addEarning = function () {
   earnings.push({ label: "", amount: 0 });
   saveData();
   render();
-  calculateAndUpdate();
 };
 
 window.addExpense = function () {
   expenses.push({ label: "", category: "Food", amount: 0 });
   saveData();
   render();
-  calculateAndUpdate();
 };
 
 window.deleteEarning = function (index) {
   earnings.splice(index, 1);
   saveData();
   render();
-  calculateAndUpdate();
 };
 
 window.deleteExpense = function (index) {
   expenses.splice(index, 1);
   saveData();
   render();
-  calculateAndUpdate();
 };
 
 window.updateEarningLabel = function (index, value) {
@@ -103,7 +102,7 @@ window.updateExpenseCategory = function (index, value) {
   calculateAndUpdate();
 };
 
-// CALCULATE
+// CALCULATE + CATEGORY TOTALS
 function calculateAndUpdate() {
   const totalEarnings = earnings.reduce((sum, e) => sum + e.amount, 0);
   const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
@@ -113,7 +112,15 @@ function calculateAndUpdate() {
   document.getElementById("total-expenses").innerText = totalExpenses;
   document.getElementById("remaining").innerText = remaining;
 
-  // 🔥 CATEGORY TOTALS
+  const container = document.getElementById("category-totals");
+
+  // 🔥 FIX: show message if empty
+  if (expenses.length === 0) {
+    container.innerHTML = "<p>No expenses yet</p>";
+    return;
+  }
+
+  // CATEGORY TOTALS
   const categoryTotals = {};
 
   expenses.forEach(e => {
@@ -121,11 +128,10 @@ function calculateAndUpdate() {
     categoryTotals[category] = (categoryTotals[category] || 0) + e.amount;
   });
 
-  const container = document.getElementById("category-totals");
   container.innerHTML = "";
 
   for (let category in categoryTotals) {
-    container.innerHTML += `<p>${category}: ₱${categoryTotals[category]}</p>`;
+    container.innerHTML += `<p><strong>${category}</strong>: ₱${categoryTotals[category]}</p>`;
   }
 }
 
