@@ -49,53 +49,62 @@ window.addEarning = function () {
   earnings.push({ label: "", amount: 0 });
   saveData();
   render();
+  calculateAndUpdate();
 };
 
 window.addExpense = function () {
   expenses.push({ label: "", category: "Food", amount: 0 });
   saveData();
   render();
+  calculateAndUpdate();
 };
 
 window.deleteEarning = function (index) {
   earnings.splice(index, 1);
   saveData();
   render();
+  calculateAndUpdate();
 };
 
 window.deleteExpense = function (index) {
   expenses.splice(index, 1);
   saveData();
   render();
+  calculateAndUpdate();
 };
 
 window.updateEarningLabel = function (index, value) {
   earnings[index].label = value;
   saveData();
+  calculateAndUpdate();
 };
 
 window.updateEarningAmount = function (index, value) {
   earnings[index].amount = parseFloat(value) || 0;
   saveData();
+  calculateAndUpdate();
 };
 
 window.updateExpenseLabel = function (index, value) {
   expenses[index].label = value;
   saveData();
+  calculateAndUpdate();
 };
 
 window.updateExpenseAmount = function (index, value) {
   expenses[index].amount = parseFloat(value) || 0;
   saveData();
+  calculateAndUpdate();
 };
 
 window.updateExpenseCategory = function (index, value) {
   expenses[index].category = value;
   saveData();
+  calculateAndUpdate();
 };
 
 // CALCULATE
-window.calculate = function () {
+function calculateAndUpdate() {
   const totalEarnings = earnings.reduce((sum, e) => sum + e.amount, 0);
   const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
   const remaining = totalEarnings - totalExpenses;
@@ -103,7 +112,7 @@ window.calculate = function () {
   document.getElementById("total-earnings").innerText = totalEarnings;
   document.getElementById("total-expenses").innerText = totalExpenses;
   document.getElementById("remaining").innerText = remaining;
-};
+}
 
 // EXPORT
 window.exportCSV = function () {
