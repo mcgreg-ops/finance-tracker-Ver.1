@@ -20,70 +20,102 @@
       background: #fff;
       padding: 15px;
       border-radius: 16px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
+    /* HEADER */
     .header {
       display: flex;
       align-items: center;
       gap: 10px;
+      margin-bottom: 15px;
     }
 
     .logo {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
     }
 
     h3 {
       margin-top: 20px;
     }
 
+    /* ROW (mobile first) */
     .row {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 12px;
-}
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
 
     input, select {
       padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+      box-sizing: border-box;
     }
 
+    /* BUTTONS */
     button {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-}
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
 
-/* Only full width for add/export buttons */
-.add-btn,
-.export-btn {
-  width: 100%;
-}
+    /* Main buttons full width */
+    .add-btn,
+    .export-btn {
+      width: 100%;
+      background: #f0f0f0;
+    }
 
-.delete-btn {
-  width: auto;
-  padding: 8px 12px;
-}
+    .export-btn {
+      background: #28a745;
+      color: white;
+      margin-top: 10px;
+    }
+
+    /* DELETE BUTTON FIX */
+    .delete-btn {
+      width: auto;
+      background: #ff4d4d;
+      color: white;
+      padding: 8px 12px;
+      align-self: flex-start; /* 👈 prevents full stretch */
+    }
+
     .results {
       margin-top: 20px;
+      background: #f8f9fb;
+      padding: 12px;
+      border-radius: 10px;
     }
 
+    /* DESKTOP */
     @media (min-width: 600px) {
-  .row {
-    flex-direction: row;
-    align-items: center;
-  }
+      .row {
+        flex-direction: row;
+        align-items: center;
+      }
 
-  .row input,
-  .row select {
-    flex: 1;
-  }
+      .row input,
+      .row select {
+        flex: 1;
+      }
 
-  .delete-btn {
-    width: auto;
-  }
-}
+      .delete-btn {
+        align-self: center;
+      }
+
+      .logo {
+        width: 40px;
+        height: 40px;
+      }
+    }
   </style>
 </head>
 
@@ -99,18 +131,22 @@
     </div>
   </div>
 
+  <!-- Earnings -->
   <h3>Earnings</h3>
   <div id="earnings-list"></div>
-  <button onclick="addEarning()">+ Add Earning</button>
+  <button class="add-btn" onclick="addEarning()">+ Add Earning</button>
 
+  <!-- Expenses -->
   <h3>Expenses</h3>
   <div id="expenses-list"></div>
-  <button onclick="addExpense()">+ Add Expense</button>
+  <button class="add-btn" onclick="addExpense()">+ Add Expense</button>
 
+  <!-- Savings -->
   <h3>Savings</h3>
   <div id="savings-list"></div>
-  <button onclick="addSaving()">+ Add Saving</button>
+  <button class="add-btn" onclick="addSaving()">+ Add Saving</button>
 
+  <!-- Results -->
   <div class="results">
     <p>Total Earnings: <span id="total-earnings">0</span></p>
     <p>Total Expenses: <span id="total-expenses">0</span></p>
@@ -119,7 +155,7 @@
     <div id="category-totals"></div>
   </div>
 
-  <button onclick="exportCSV()">Export</button>
+  <button class="export-btn" onclick="exportCSV()">Export</button>
 
 </div>
 
