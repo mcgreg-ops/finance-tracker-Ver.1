@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Finance Tracker</title>
+<style>
+  body { font-family: Arial; padding: 20px; max-width: 500px; margin: auto; }
+  input, button { width: 100%; padding: 10px; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<h2>Finance Tracker</h2>
+
+<label>Earnings</label>
+<input type="number" id="earnings" placeholder="Enter your earnings">
+
+<h3>Expenses</h3>
+<div id="expense-list"></div>
+<button onclick="addExpense()">+ Add Expense</button>
+
+<h3>Results</h3>
+<p>Total Expenses: <span id="total">0</span></p>
+<p>Remaining: <span id="remaining">0</span></p>
+
+<button onclick="calculate()">Calculate</button>
+
+<script>
+let expenses = [];
+
+function addExpense() {
+  expenses.push(0);
+  render();
+}
+
+function render() {
+  const container = document.getElementById("expense-list");
+  container.innerHTML = "";
+  expenses.forEach((value, index) => {
+    container.innerHTML += `<input type="number" value="${value}" onchange="update(${index}, this.value)">`;
+  });
+}
+
+function update(index, value) {
+  expenses[index] = Number(value);
+}
+
+function calculate() {
+  const earnings = Number(document.getElementById("earnings").value);
+  const total = expenses.reduce((a, b) => a + b, 0);
+  document.getElementById("total").innerText = total;
+  document.getElementById("remaining").innerText = earnings - total;
+}
+</script>
+
+</body>
+</html>
