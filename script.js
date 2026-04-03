@@ -1,16 +1,19 @@
 let earnings = JSON.parse(localStorage.getItem("earnings")) || [];
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+let savings = JSON.parse(localStorage.getItem("savings")) || [];
 
 // SAVE
 function saveData() {
   localStorage.setItem("earnings", JSON.stringify(earnings));
   localStorage.setItem("expenses", JSON.stringify(expenses));
+  localStorage.setItem("savings", JSON.stringify(savings));
 }
 
 // RENDER
 function render() {
   const earningsList = document.getElementById("earnings-list");
   const expensesList = document.getElementById("expenses-list");
+  const savingsList = document.getElementById("savings-list");
 
   earningsList.innerHTML = "";
   expensesList.innerHTML = "";
@@ -42,6 +45,18 @@ function render() {
       </div>
     `;
   });
+
+  savingsList.innerHTML = "";
+
+savings.forEach((item, index) => {
+  savingsList.innerHTML += `
+    <div class="row">
+      <input type="text" placeholder="Label" value="${item.label}" onchange="updateSavingLabel(${index}, this.value)">
+      <input type="number" placeholder="Amount" value="${item.amount}" onchange="updateSavingAmount(${index}, this.value)">
+      <button class="delete-btn" onclick="deleteSaving(${index})">X</button>
+    </div>
+  `;
+});
 
   // ✅ ALWAYS UPDATE TOTALS AFTER RENDER
   calculateAndUpdate();
@@ -102,15 +117,41 @@ window.updateExpenseCategory = function (index, value) {
   calculateAndUpdate();
 };
 
+window.addSaving = function () {
+  savings.push({ label: "", amount: 0 });
+  saveData();
+  render();
+};
+
+window.deleteSaving = function (index) {
+  savings.splice(index, 1);
+  saveData();
+  render();
+};
+
+window.updateSavingLabel = function (index, value) {
+  savings[index].label = value;
+  saveData();
+  calculateAndUpdate();
+};
+
+window.updateSavingAmount = function (index, value) {
+  savings[index].amount = parseFloat(value) || 0;
+  saveData();
+  calculateAndUpdate();
+};
+
 // CALCULATE + CATEGORY TOTALS
 function calculateAndUpdate() {
   const totalEarnings = earnings.reduce((sum, e) => sum + e.amount, 0);
   const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
   const remaining = totalEarnings - totalExpenses;
+   const totalSavings = savings.reduce((sum, s) => sum + s.amount, 0);
 
   document.getElementById("total-earnings").innerText = totalEarnings;
   document.getElementById("total-expenses").innerText = totalExpenses;
   document.getElementById("remaining").innerText = remaining;
+  document.getElementById("total-savings").innerText = totalSavings;
 
   const container = document.getElementById("category-totals");
 
