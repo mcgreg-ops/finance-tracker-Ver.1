@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="theme-color" content="#4a90e2">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FlowTrack - MG Labs</title>
-  <link rel="icon" href="logo.png">
-
-  <style>
+<style>
   body {
     font-family: Arial, sans-serif;
     background: #eef2f7;
@@ -33,6 +24,31 @@
   h3 {
     margin-top: 20px;
     font-size: 16px;
+  }
+
+  /* HEADER (FIXED) */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .logo {
+    width: 32px;        /* 👈 SMALLER for mobile */
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .app-name {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .company-name {
+    margin: 0;
+    font-size: 12px;
+    color: gray;
   }
 
   /* MOBILE FIRST STACK */
@@ -106,88 +122,10 @@
       width: 60px;
     }
 
-    .header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
-  flex-wrap: nowrap;
-}
-
-.header img {
-  max-width: 100%;
-  height: auto;
-}
-
-.logo {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-/* Bigger on desktop */
-@media (min-width: 600px) {
-  .logo {
-    width: 50px;
-    height: 50px;
+    /* Slightly bigger logo on desktop */
+    .logo {
+      width: 45px;
+      height: 45px;
+    }
   }
-}
-
-.app-name {
-  margin: 0;
-  font-size: 18px;
-}
-
-.company-name {
-  margin: 0;
-  font-size: 12px;
-  color: gray;
-}
 </style>
-</head>
-
-<body>
-
-<div class="container">
-  <div class="header">
-  <img src="logo.png" alt="MG Labs Logo" class="logo">
-  <div>
-    <h1 class="app-name">FlowTrack</h1>
-    <p class="company-name">by MG Labs</p>
-  </div>
-</div>
-
-  <!-- Earnings -->
-  <h3>Earnings</h3>
-  <div id="earnings-list"></div>
-  <button class="add-btn" onclick="addEarning()">+ Add Earning</button>
-
-  <!-- Expenses -->
-  <h3>Expenses</h3>
-  <div id="expenses-list"></div>
-  <button class="add-btn" onclick="addExpense()">+ Add Expense</button>
-
-  <h3>Savings</h3>
-  <div id="savings-list"></div>
-  <button class="add-btn" onclick="addSaving()">+ Add Saving</button>
-
-  <!-- Results -->
-  <div class="results">
-    <h3>Results</h3>
-    <p>Total Earnings: <span id="total-earnings">0</span></p>
-    <p>Total Expenses: <span id="total-expenses">0</span></p>
-    <p>Total Savings: <span id="total-savings">0</span></p>
-    <p>Remaining: <span id="remaining">0</span></p>
-
-    <h4>Category Totals</h4>
-    <div id="category-totals"></div>
-  </div>
-
-  <button class="export-btn" onclick="exportCSV()">Export to Excel</button>
-</div>
-
-<!-- IMPORTANT -->
-<script src="script.js" defer></script>
-
-</body>
-</html>
