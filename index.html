@@ -104,14 +104,43 @@
     .delete-btn {
       width: 60px;
     }
-  }
+
+    .header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.app-name {
+  margin: 0;
+  font-size: 18px;
+}
+
+.company-name {
+  margin: 0;
+  font-size: 12px;
+  color: gray;
+}
 </style>
 </head>
 
 <body>
 
 <div class="container">
-  <h1>Finance Tracker</h1>
+  <div class="header">
+  <img src="logo.png" alt="MG Labs Logo" class="logo">
+  <div>
+    <h1 class="app-name">FlowTrack</h1>
+    <p class="company-name">by MG Labs</p>
+  </div>
+</div>
 
   <!-- Earnings -->
   <h3>Earnings</h3>
