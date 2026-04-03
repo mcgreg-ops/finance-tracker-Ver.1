@@ -18,8 +18,8 @@ function render() {
   earnings.forEach((item, index) => {
     earningsList.innerHTML += `
       <div class="row">
-        <input type="text" value="${item.label}" onchange="updateEarningLabel(${index}, this.value)">
-        <input type="number" value="${item.amount}" onchange="updateEarningAmount(${index}, this.value)">
+        <input type="text" placeholder="Label" value="${item.label}" onchange="updateEarningLabel(${index}, this.value)">
+        <input type="number" placeholder="Amount" value="${item.amount}" onchange="updateEarningAmount(${index}, this.value)">
         <button class="delete-btn" onclick="deleteEarning(${index})">X</button>
       </div>
     `;
@@ -28,7 +28,7 @@ function render() {
   expenses.forEach((item, index) => {
     expensesList.innerHTML += `
       <div class="row">
-        <input type="text" value="${item.label}" onchange="updateExpenseLabel(${index}, this.value)">
+        <input type="text" placeholder="Label" value="${item.label}" onchange="updateExpenseLabel(${index}, this.value)">
         
         <select onchange="updateExpenseCategory(${index}, this.value)">
           <option value="Food" ${item.category === "Food" ? "selected" : ""}>Food</option>
@@ -37,7 +37,7 @@ function render() {
           <option value="Personal" ${item.category === "Personal" ? "selected" : ""}>Personal</option>
         </select>
 
-        <input type="number" value="${item.amount}" onchange="updateExpenseAmount(${index}, this.value)">
+        <input type="number" placeholder="Amount" value="${item.amount}" onchange="updateExpenseAmount(${index}, this.value)">
         <button class="delete-btn" onclick="deleteExpense(${index})">X</button>
       </div>
     `;
