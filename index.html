@@ -1,80 +1,121 @@
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #eef2f7;
-    padding: 20px;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finance Tracker</title>
 
-  .container {
-    max-width: 700px;
-    margin: auto;
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-  }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      padding: 20px;
+    }
 
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
 
-  h3 {
-    margin-top: 25px;
-  }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-  .row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
+    h3 {
+      margin-top: 25px;
+    }
 
-  input, select {
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    flex: 1;
-  }
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
 
-  button {
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-  }
+    input, select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      flex: 1;
+    }
 
-  .delete-btn {
-    background: #ff4d4d;
-    color: white;
-  }
+    button {
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+    }
 
-  .add-btn {
-    width: 100%;
-    background: #f0f0f0;
-  }
+    .delete-btn {
+      background: #ff4d4d;
+      color: white;
+    }
 
-  .add-btn:hover {
-    background: #ddd;
-  }
+    .add-btn {
+      width: 100%;
+      background: #f0f0f0;
+    }
 
-  .calculate-btn {
-    margin-top: 10px;
-    background: #4a90e2;
-    color: white;
-    width: 100%;
-  }
+    .add-btn:hover {
+      background: #ddd;
+    }
 
-  .export-btn {
-    background: #28a745;
-    color: white;
-    width: 100%;
-    margin-top: 10px;
-  }
+    .calculate-btn {
+      margin-top: 10px;
+      background: #4a90e2;
+      color: white;
+      width: 100%;
+    }
 
-  .results {
-    background: #f8f9fb;
-    padding: 15px;
-    border-radius: 8px;
-    margin-top: 20px;
-  }
-</style>
+    .export-btn {
+      background: #28a745;
+      color: white;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .results {
+      background: #f8f9fb;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Finance Tracker</h1>
+
+  <!-- Earnings -->
+  <h3>Earnings</h3>
+  <div id="earnings-list"></div>
+  <button class="add-btn" onclick="addEarning()">+ Add Earning</button>
+
+  <!-- Expenses -->
+  <h3>Expenses</h3>
+  <div id="expenses-list"></div>
+  <button class="add-btn" onclick="addExpense()">+ Add Expense</button>
+
+  <!-- Results -->
+  <div class="results">
+    <h3>Results</h3>
+    <p>Total Earnings: <span id="total-earnings">0</span></p>
+    <p>Total Expenses: <span id="total-expenses">0</span></p>
+    <p>Remaining: <span id="remaining">0</span></p>
+  </div>
+
+  <button class="calculate-btn" onclick="calculate()">Calculate</button>
+  <button class="export-btn" onclick="exportCSV()">Export to Excel</button>
+</div>
+
+<!-- IMPORTANT -->
+<script src="script.js" defer></script>
+
+</body>
+</html>
