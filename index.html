@@ -38,24 +38,52 @@
     }
 
     .row {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
 
     input, select {
       padding: 10px;
     }
 
     button {
-      padding: 10px;
-      margin-top: 5px;
-    }
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
 
+/* Only full width for add/export buttons */
+.add-btn,
+.export-btn {
+  width: 100%;
+}
+
+.delete-btn {
+  width: auto;
+  padding: 8px 12px;
+}
     .results {
       margin-top: 20px;
     }
+
+    @media (min-width: 600px) {
+  .row {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .row input,
+  .row select {
+    flex: 1;
+  }
+
+  .delete-btn {
+    width: auto;
+  }
+}
   </style>
 </head>
 
