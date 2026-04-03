@@ -111,12 +111,26 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
+  flex-wrap: nowrap;
+}
+
+.header img {
+  max-width: 100%;
+  height: auto;
 }
 
 .logo {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
+}
+
+/* Bigger on desktop */
+@media (min-width: 600px) {
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .app-name {
