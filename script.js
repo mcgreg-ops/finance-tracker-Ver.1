@@ -112,6 +112,21 @@ function calculateAndUpdate() {
   document.getElementById("total-earnings").innerText = totalEarnings;
   document.getElementById("total-expenses").innerText = totalExpenses;
   document.getElementById("remaining").innerText = remaining;
+
+  // 🔥 CATEGORY TOTALS
+  const categoryTotals = {};
+
+  expenses.forEach(e => {
+    const category = e.category || "Other";
+    categoryTotals[category] = (categoryTotals[category] || 0) + e.amount;
+  });
+
+  const container = document.getElementById("category-totals");
+  container.innerHTML = "";
+
+  for (let category in categoryTotals) {
+    container.innerHTML += `<p>${category}: ₱${categoryTotals[category]}</p>`;
+  }
 }
 
 // EXPORT
