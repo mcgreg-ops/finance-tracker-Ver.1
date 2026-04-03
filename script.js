@@ -7,7 +7,7 @@ function saveData() {
   localStorage.setItem("expenses", JSON.stringify(expenses));
 }
 
-// RENDER UI
+// RENDER
 function render() {
   const earningsList = document.getElementById("earnings-list");
   const expensesList = document.getElementById("expenses-list");
@@ -18,8 +18,8 @@ function render() {
   earnings.forEach((item, index) => {
     earningsList.innerHTML += `
       <div class="row">
-        <input type="text" placeholder="Label" value="${item.label}" onchange="updateEarningLabel(${index}, this.value)">
-        <input type="number" placeholder="Amount" value="${item.amount}" onchange="updateEarningAmount(${index}, this.value)">
+        <input type="text" value="${item.label}" onchange="updateEarningLabel(${index}, this.value)">
+        <input type="number" value="${item.amount}" onchange="updateEarningAmount(${index}, this.value)">
         <button class="delete-btn" onclick="deleteEarning(${index})">X</button>
       </div>
     `;
@@ -28,7 +28,7 @@ function render() {
   expenses.forEach((item, index) => {
     expensesList.innerHTML += `
       <div class="row">
-        <input type="text" placeholder="Label" value="${item.label}" onchange="updateExpenseLabel(${index}, this.value)">
+        <input type="text" value="${item.label}" onchange="updateExpenseLabel(${index}, this.value)">
         
         <select onchange="updateExpenseCategory(${index}, this.value)">
           <option value="Food" ${item.category === "Food" ? "selected" : ""}>Food</option>
@@ -37,17 +37,6 @@ function render() {
           <option value="Personal" ${item.category === "Personal" ? "selected" : ""}>Personal</option>
         </select>
 
-        <input type="number" placeholder="Amount" value="${item.amount}" onchange="updateExpenseAmount(${index}, this.value)">
-        <button class="delete-btn" onclick="deleteExpense(${index})">X</button>
-      </div>
-    `;
-  });
-}
-
-  expenses.forEach((item, index) => {
-    expensesList.innerHTML += `
-      <div class="row">
-        <input type="text" value="${item.label}" onchange="updateExpenseLabel(${index}, this.value)">
         <input type="number" value="${item.amount}" onchange="updateExpenseAmount(${index}, this.value)">
         <button class="delete-btn" onclick="deleteExpense(${index})">X</button>
       </div>
@@ -55,8 +44,7 @@ function render() {
   });
 }
 
-// ✅ GLOBAL FUNCTIONS (fixes your error)
-
+// GLOBAL FUNCTIONS
 window.addEarning = function () {
   earnings.push({ label: "", amount: 0 });
   saveData();
@@ -117,7 +105,7 @@ window.calculate = function () {
   document.getElementById("remaining").innerText = remaining;
 };
 
-// ✅ EXPORT WITH TOTALS (your feature)
+// EXPORT
 window.exportCSV = function () {
   let csv = "Label,Type,Amount\n";
 
@@ -150,5 +138,5 @@ window.exportCSV = function () {
   a.click();
 };
 
-// INITIAL LOAD
+// INIT
 render();
