@@ -193,24 +193,24 @@ function calculateAndUpdate() {
   document.getElementById("total-savings").innerText = totalSavings;
   document.getElementById("remaining").innerText = remaining;
 
+  // CATEGORY TOTALS
   const container = document.getElementById("category-totals");
 
-const categoryTotals = {};
+  const categoryTotals = {};
 
-expenses.forEach(e => {
-  const category = e.category || "Other";
-  categoryTotals[category] = (categoryTotals[category] || 0) + e.amount;
-});
+  expenses.forEach(e => {
+    const category = e.category || "Other";
+    categoryTotals[category] = (categoryTotals[category] || 0) + e.amount;
+  });
 
-container.innerHTML = "";
+  container.innerHTML = "";
 
-if (Object.keys(categoryTotals).length === 0) {
-  container.innerHTML = "<p>No category data</p>";
-} else {
-  for (let category in categoryTotals) {
-    container.innerHTML += `
-      <p><strong>${category}</strong>: ₱${categoryTotals[category]}</p>
-    `;
+  if (Object.keys(categoryTotals).length === 0) {
+    container.innerHTML = "<p>No category data</p>";
+  } else {
+    for (let category in categoryTotals) {
+      container.innerHTML += `<p><strong>${category}</strong>: ₱${categoryTotals[category]}</p>`;
+    }
   }
 }
 
