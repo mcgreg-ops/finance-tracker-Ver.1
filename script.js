@@ -63,6 +63,45 @@ function render() {
   calculateAndUpdate();
 }
 
+window.exportCSV = function () {
+  let csv = "Label,Type,Amount\n";
+
+  let totalEarnings = 0;
+  let totalExpenses = 0;
+  let totalSavings = 0;
+
+  earnings.forEach(e => {
+    csv += `${e.label},Income,${e.amount}\n`;
+    totalEarnings += e.amount;
+  });
+
+  expenses.forEach(e => {
+    csv += `${e.label},Expense,${e.amount}\n`;
+    totalExpenses += e.amount;
+  });
+
+  savings.forEach(s => {
+    csv += `${s.label},Savings,${s.amount}\n`;
+    totalSavings += s.amount;
+  });
+
+  const remaining = totalEarnings - totalExpenses;
+
+  csv += "\n";
+  csv += `Total Earnings,,${totalEarnings}\n`;
+  csv += `Total Expenses,,${totalExpenses}\n`;
+  csv += `Total Savings,,${totalSavings}\n`;
+  csv += `Remaining,,${remaining}\n`;
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = window.URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "finance-data.csv";
+  a.click();
+};
+
 // GLOBAL FUNCTIONS
 window.addEarning = function () {
   earnings.push({ label: "", amount: 0 });
