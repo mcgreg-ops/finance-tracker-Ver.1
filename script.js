@@ -214,26 +214,5 @@ if (Object.keys(categoryTotals).length === 0) {
   }
 }
 
-  const container = document.getElementById("category-totals");
-
-  if (expenses.length === 0) {
-    container.innerHTML = "<p>No expenses yet</p>";
-    return;
-  }
-
-  const categoryTotals = {};
-
-  expenses.forEach(e => {
-    const category = e.category || "Other";
-    categoryTotals[category] = (categoryTotals[category] || 0) + e.amount;
-  });
-
-  container.innerHTML = "";
-
-  for (let category in categoryTotals) {
-    container.innerHTML += `<p><strong>${category}</strong>: ₱${categoryTotals[category]}</p>`;
-  }
-}
-
 // INIT
 render();
