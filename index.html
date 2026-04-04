@@ -116,6 +116,17 @@
         height: 40px;
       }
     }
+
+    #category-totals {
+  margin-top: 10px;
+  border-top: 1px solid #ddd;
+  padding-top: 8px;
+}
+
+#category-totals p {
+  margin: 5px 0;
+  font-size: 14px;
+}
   </style>
 </head>
 
@@ -152,7 +163,9 @@
     <p>Total Expenses: <span id="total-expenses">0</span></p>
     <p>Total Savings: <span id="total-savings">0</span></p>
     <p>Remaining: <span id="remaining">0</span></p>
-    <div id="category-totals"></div>
+    <h4>Category Totals</h4>
+    
+<div id="category-totals"></div>
   </div>
 
   <button class="export-btn" onclick="exportCSV()">Export</button>
